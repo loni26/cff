@@ -11,11 +11,20 @@
               <ion-list>
                   <ion-item>
                     <ion-label>De</ion-label>
-                    <ion-input formControlName="from" placeholder="départ"></ion-input>
+                    <ion-input id="from" formControlName="from" placeholder="départ" (ionInput)="getCity('from')"></ion-input>
                   </ion-item>
+                  
+                  <ion-item *ngIf="cityFrom?.length>0">
+                      <ion-list>
+                          <ion-item *ngFor="let city of cityFrom" (click)="setCity(city.label, 'from')">
+                            {{city.label}}
+                          </ion-item>
+                      </ion-list>
+                  </ion-item>
+
                   <ion-item>
                     <ion-label>A</ion-label>
-                    <ion-input formControlName="to" placeholder="Arrivée"></ion-input>
+                    <ion-input id="to" formControlName="to" placeholder="Arrivée" (ionInput)="getCity('to');"></ion-input>
                   </ion-item>
               </ion-list>
               <ion-button type="submit">Rechercher</ion-button>
